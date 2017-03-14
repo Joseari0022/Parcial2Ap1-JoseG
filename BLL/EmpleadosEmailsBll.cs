@@ -9,15 +9,15 @@ using System.Linq.Expressions;
 
 namespace BLL
 {
-    public class RetencionesBll
+    public class EmpleadosEmailsBll
     {
-        public static bool Guardar(Retenciones rete)
+        public static bool Guardar(Entidades.EmpleadosEmails email)
         {
-            using (var conexion = new Repository<Retenciones>())
+            using (var conexion = new Repository<EmpleadosEmails>())
             {
                 try
                 {
-                    return conexion.Guardar(rete);
+                    return conexion.Guardar(email);
                 }
                 catch (Exception)
                 {
@@ -29,13 +29,13 @@ namespace BLL
             return false;
         }
 
-        public static bool Eliminar(Entidades.Retenciones rete)
+        public static bool Eliminar(EmpleadosEmails email)
         {
-            using (var conexion = new Repository<Retenciones>())
+            using (var conexion = new Repository<EmpleadosEmails>())
             {
                 try
                 {
-                    return conexion.Eliminar(rete);
+                    return conexion.Eliminar(email);
                 }
                 catch (Exception)
                 {
@@ -47,13 +47,13 @@ namespace BLL
             return false;
         }
 
-        public static bool Modificar(Entidades.Retenciones rete)
+        public static bool Modificar(EmpleadosEmails email)
         {
-            using (var conexion = new Repository<Retenciones>())
+            using (var conexion = new Repository<EmpleadosEmails>())
             {
                 try
                 {
-                    return conexion.Modificar(rete);
+                    return conexion.Modificar(email);
                 }
                 catch (Exception)
                 {
@@ -65,13 +65,13 @@ namespace BLL
             return false;
         }
 
-        public static Entidades.Retenciones Buscar(Expression<Func<Retenciones, bool>> Busqueda)
+        public static EmpleadosEmails Buscar(Expression<Func<EmpleadosEmails, bool>> criterio)
         {
-            using (var conexion = new Repository<Retenciones>())
+            using (var conexion = new Repository<EmpleadosEmails>())
             {
                 try
                 {
-                    return conexion.Buscar(Busqueda);
+                    return conexion.Buscar(criterio);
                 }
                 catch (Exception)
                 {
@@ -81,13 +81,13 @@ namespace BLL
             }
         }
 
-        public static List<Entidades.Retenciones> GetList(Expression<Func<Entidades.Retenciones, bool>> Busqueda)
+        public static List<Entidades.EmpleadosEmails> GetList(Expression<Func<Entidades.EmpleadosEmails, bool>> criterio)
         {
-            using (var conexion = new Repository<Retenciones>())
+            using (var conexion = new Repository<EmpleadosEmails>())
             {
                 try
                 {
-                    return conexion.GetList(Busqueda);
+                    return conexion.GetList(criterio);
                 }
                 catch (Exception)
                 {
@@ -97,9 +97,9 @@ namespace BLL
             }
         }
 
-        public static List<Entidades.Retenciones> GetListTD()
+        public static List<EmpleadosEmails> GetListTD()
         {
-            using (var conexion = new Repository<Retenciones>())
+            using (var conexion = new Repository<EmpleadosEmails>())
             {
                 try
                 {

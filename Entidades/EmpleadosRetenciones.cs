@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class EmpleadosDescuentos
+    public class EmpleadosRetenciones
     {
         [Key]
         public int Id { get; set; }
-        public int EmpleadoId { get; set; }
-        public int RetencionId { get; set; }
+        public int EmpleadosId { get; set; }
+        public int RetencionesId { get; set; }
     }
 }

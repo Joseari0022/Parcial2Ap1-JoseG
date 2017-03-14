@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrosRetenciones));
             this.Nuevobutton = new System.Windows.Forms.Button();
             this.Eliminarbutton = new System.Windows.Forms.Button();
@@ -39,6 +40,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DescripciontextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.IderrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.DescripcionerrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ValorerrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.IderrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DescripcionerrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ValorerrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // Nuevobutton
@@ -52,6 +59,7 @@
             this.Nuevobutton.Text = "Nuevo";
             this.Nuevobutton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Nuevobutton.UseVisualStyleBackColor = true;
+            this.Nuevobutton.Click += new System.EventHandler(this.Nuevobutton_Click);
             // 
             // Eliminarbutton
             // 
@@ -64,6 +72,7 @@
             this.Eliminarbutton.Text = "Eliminar";
             this.Eliminarbutton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Eliminarbutton.UseVisualStyleBackColor = true;
+            this.Eliminarbutton.Click += new System.EventHandler(this.Eliminarbutton_Click);
             // 
             // Guardarbutton
             // 
@@ -76,6 +85,7 @@
             this.Guardarbutton.Text = "Guardar";
             this.Guardarbutton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Guardarbutton.UseVisualStyleBackColor = true;
+            this.Guardarbutton.Click += new System.EventHandler(this.Guardarbutton_Click);
             // 
             // label7
             // 
@@ -138,7 +148,19 @@
             this.label3.TabIndex = 114;
             this.label3.Text = "Descripcion";
             // 
-            // Retenciones
+            // IderrorProvider
+            // 
+            this.IderrorProvider.ContainerControl = this;
+            // 
+            // DescripcionerrorProvider
+            // 
+            this.DescripcionerrorProvider.ContainerControl = this;
+            // 
+            // ValorerrorProvider
+            // 
+            this.ValorerrorProvider.ContainerControl = this;
+            // 
+            // RegistrosRetenciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -153,8 +175,11 @@
             this.Controls.Add(this.Guardarbutton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.ValortextBox);
-            this.Name = "Retenciones";
+            this.Name = "RegistrosRetenciones";
             this.Text = "Retenciones";
+            ((System.ComponentModel.ISupportInitialize)(this.IderrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DescripcionerrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ValorerrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,5 +197,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox DescripciontextBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ErrorProvider IderrorProvider;
+        private System.Windows.Forms.ErrorProvider DescripcionerrorProvider;
+        private System.Windows.Forms.ErrorProvider ValorerrorProvider;
     }
 }

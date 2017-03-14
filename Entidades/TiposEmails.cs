@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Retenciones
+    public class TiposEmails
     {
         [Key]
-        public int RetencionId { get; set; }
+        public int TipoId { get; set; }
         public string Descripcion { get; set; }
-        public float Valor { get; set; }
 
-        public virtual List<Empleados> Empleados { get; set; }
+        public virtual ICollection<EmpleadosEmails> Relacion { get; set; }
 
-        public Retenciones()
+        public TiposEmails()
         {
-            Empleados = new List<Empleados>();
+            this.Relacion = new HashSet<EmpleadosEmails>();
         }
     }
 }

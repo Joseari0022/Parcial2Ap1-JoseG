@@ -12,9 +12,9 @@ using BLL;
 
 namespace Parcial2Ap1_JoseG.UI.Registros
 {
-    public partial class RegistrosRetenciones : Form
+    public partial class RegistrosTiposEmails : Form
     {
-        public RegistrosRetenciones()
+        public RegistrosTiposEmails()
         {
             InitializeComponent();
         }
@@ -30,13 +30,13 @@ namespace Parcial2Ap1_JoseG.UI.Registros
             else
             {
                 int id = u.String(IdtextBox.Text);
-                Retenciones rete = new Retenciones();
+                TiposEmails te = new TiposEmails();
 
-                rete = RetencionesBll.Buscar(p => p.RetencionId == id);
-                if(rete != null)
+                te = TiposEmailBll.Buscar(p => p.TipoId == id);
+                if (te != null)
                 {
-                    pasar(rete);
-                   
+                    pasar(te);
+
                 }
                 else
                 {
@@ -45,11 +45,10 @@ namespace Parcial2Ap1_JoseG.UI.Registros
             }
         }
 
-        private void pasar(Retenciones rt)
+        private void pasar(TiposEmails te)
         {
-            IdtextBox.Text = rt.RetencionId.ToString();
-            DescripciontextBox.Text = rt.Descripcion;
-            ValortextBox.Text = rt.Valor.ToString();
+            IdtextBox.Text = te.TipoId.ToString();
+            DescripciontextBox.Text = te.Descripcion;
         }
 
         private void Nuevobutton_Click(object sender, EventArgs e)
@@ -61,22 +60,21 @@ namespace Parcial2Ap1_JoseG.UI.Registros
         {
             IdtextBox.Clear();
             DescripciontextBox.Clear();
-            ValortextBox.Clear();
         }
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
-            Retenciones rete = new Retenciones();
-            if(!Validar())
+            TiposEmails te = new TiposEmails();
+            if (!Validar())
             {
                 MessageBox.Show("Campos vacios");
             }
             else
             {
-                Llenar(rete);
-                if(rete != null)
+                Llenar(te);
+                if (te != null)
                 {
-                    if (RetencionesBll.Guardar(rete))
+                    if (TiposEmailBll.Guardar(te))
                         MessageBox.Show("Guardado con exito!!!");
                     else
                         MessageBox.Show("No guardado!!!");
@@ -94,19 +92,12 @@ namespace Parcial2Ap1_JoseG.UI.Registros
                 DescripcionerrorProvider.SetError(DescripciontextBox, "Por favor llenar el campo");
                 cambio = false;
             }
-            if (string.IsNullOrEmpty(ValortextBox.Text))
-            {
-                ValorerrorProvider.SetError(ValortextBox, "Por favor llenar el campo");
-                cambio = false;
-            }
-
             return cambio;
         }
 
-        private void Llenar(Retenciones r)
+        private void Llenar(TiposEmails te)
         {
-            r.Descripcion = DescripciontextBox.Text;
-            r.Valor = Convert.ToInt32(ValortextBox);
+            te.Descripcion = DescripciontextBox.Text;
         }
 
         private void Eliminarbutton_Click(object sender, EventArgs e)
@@ -117,9 +108,8 @@ namespace Parcial2Ap1_JoseG.UI.Registros
             }
             else
             {
-
                 int id = u.String(IdtextBox.Text);
-                if (RetencionesBll.Eliminar(RetencionesBll.Buscar(p => p.RetencionId == id)))
+                if (TiposEmailBll.Eliminar(TiposEmailBll.Buscar(p => p.TipoId == id)))
                 {
                     Limpiar();
                     MessageBox.Show("Eliminado con exito!!!");
@@ -129,6 +119,7 @@ namespace Parcial2Ap1_JoseG.UI.Registros
                     MessageBox.Show("No eliminado!!!");
                 }
             }
+
         }
     }
 }

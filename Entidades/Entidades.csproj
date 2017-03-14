@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Empleados.cs" />
-    <Compile Include="EmpleadosDescuentos.cs" />
     <Compile Include="EmpleadosEmails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Retenciones.cs" />
-    <Compile Include="TiposEmail.cs" />
+    <Compile Include="EmpleadosRetenciones.cs" />
+    <Compile Include="TiposEmails.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

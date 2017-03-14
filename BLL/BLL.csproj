@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmpleadosBll.cs" />
+    <Compile Include="EmpleadosDescuentosBll.cs" />
+    <Compile Include="EmpleadosEmailsBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetencionesBll.cs" />
     <Compile Include="TiposEmailBll.cs" />

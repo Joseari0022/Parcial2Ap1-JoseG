@@ -5,83 +5,113 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidades;
 using DAL;
+using System.Linq.Expressions;
 
 namespace BLL
 {
     public class TiposEmailBll
     {
-        public static bool Guardar(TiposEmail te)
+        public static bool Guardar(TiposEmails tipo)
         {
-            try
+            using (var conexion = new Repository<TiposEmails>())
             {
-                Parcial2Db db = new Parcial2Db();
+                try
                 {
-                    db.TiposEmail.Add(te);
-                    db.SaveChanges();
-                    db.Dispose();
-                    return false;
+                    return conexion.Guardar(tipo);
+                }
+                catch (Exception)
+                {
+
+                    throw;
                 }
             }
-            catch (Exception)
+
+            return false;
+        }
+
+        public static bool Eliminar(TiposEmails tipo)
+        {
+            using (var conexion = new Repository<TiposEmails>())
             {
-                return true;
-                throw;
+                try
+                {
+                    return conexion.Eliminar(tipo);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool Modificar(TiposEmails tipo)
+        {
+            using (var conexion = new Repository<TiposEmails>())
+            {
+                try
+                {
+                    return conexion.Modificar(tipo);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+
+            return false;
+        }
+
+        public static TiposEmails Buscar(Expression<Func<TiposEmails, bool>> Busqueda)
+        {
+            using (var conexion = new Repository<TiposEmails>())
+            {
+                try
+                {
+                    return conexion.Buscar(Busqueda);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
         }
 
-        public static bool Eliminar(TiposEmail t)
+        public static List<TiposEmails> GetList(Expression<Func<TiposEmails, bool>> Busqueda)
         {
-            try
+            using (var conexion = new Repository<TiposEmails>())
             {
-                Parcial2Db db = new Parcial2Db();
-                TiposEmail te = db.TiposEmail.Find(t);
+                try
                 {
-                    db.TiposEmail.Remove(te);
-                    db.SaveChanges();
-                    return false;
+                    return conexion.GetList(Busqueda);
+                }
+                catch (Exception)
+                {
+
+                    throw;
                 }
             }
-            catch (Exception)
-            {
-                return true;
-                throw;
-            }
-
         }
 
-        public static bool Eliminar(int v)
+        public static List<TiposEmails> GetListTD()
         {
-            try
+            var tipo = new TiposEmails();
+
+            using (var conexion = new Repository<TiposEmails>())
             {
-                Parcial2Db db = new Parcial2Db();
-                TiposEmail te = db.TiposEmail.Find(v);
+                try
                 {
-                    db.TiposEmail.Remove(te);
-                    db.SaveChanges();
-                    return false;
+                    return conexion.GetListTD();
                 }
-            }
-            catch (Exception)
-            {
-                return true;
-                throw;
-            }
-
-
-        }
-
-        public static TiposEmail Buscar(int Id)
-        {
-            try
-            {
-                Parcial2Db db = new Parcial2Db();
+                catch (Exception)
                 {
-                    return db.TiposEmail.Find(Id);
+
+                    throw;
                 }
-            }
-            catch (Exception)
-            {
-                throw;
             }
         }
     }

@@ -5,86 +5,125 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidades;
 using DAL;
+using System.Linq.Expressions;
 
 namespace BLL
 {
     public class EmpleadosBll
-    {
-
-        public static bool Guardar(Empleados e)
+    { 
+        public static bool Guardar(Empleados emp)
         {
-            try
+            using (var conexion = new Parcial2Db())
             {
-                Parcial2Db db = new Parcial2Db();
+                try
                 {
-                    db.Empleados.Add(e);
-                    db.SaveChanges();
-                    db.Dispose();
-                    return false;
+                    conexion.Empleados.Add(emp);
+                    foreach(var p in emp.Retenciones)
+                    {
+                        conexion.Entry(p).State = System.Data.Entity.EntityState.Unchanged;
+                    }
+                    conexion.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    throw;
                 }
             }
-            catch (Exception)
+            return false;
+        }
+
+        public static bool Eliminar(Entidades.Empleados empleado)
+        {
+            using (var conexion = new Repository<Empleados>())
             {
-                return true;
-                throw;
+                try
+                {
+                    return conexion.Eliminar(empleado);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool Modificar(Entidades.Empleados empleado)
+        {
+            using (var conexion = new Repository<Empleados>())
+            {
+                try
+                {
+                    return conexion.Modificar(empleado);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+
+            return false;
+        }
+
+        public static Entidades.Empleados Buscar(Expression<Func<Entidades.Empleados, bool>> Busqueda)
+        {
+            var emp = new Entidades.Empleados();
+
+            using (var conexion = new Repository<Empleados>())
+            {
+                try
+                {
+                    emp = conexion.Buscar(Busqueda);
+
+                    if (emp != null)
+                    {
+                        emp.Retenciones.Count();
+                        emp.Relacion.Count();
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+
+            return emp;
+        }
+
+        public static List<Empleados> GetList(Expression<Func<Empleados, bool>> Busqueda)
+        {
+            using (var conexion = new Repository<Empleados>())
+            {
+                try
+                {
+                    return conexion.GetList(Busqueda);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
         }
 
-        public static bool Eliminar(Empleados e)
+        public static List<Entidades.Empleados> GetListTD()
         {
-            try
+            using (var conexion = new Repository<Empleados>())
             {
-                Parcial2Db db = new Parcial2Db();
-                Empleados em = db.Empleados.Find(e);
+                try
                 {
-                    db.Empleados.Remove(e);
-                    db.SaveChanges();
-                    return false;
+                    return conexion.GetListTD();
+                }
+                catch (Exception)
+                {
+
+                    throw;
                 }
             }
-            catch (Exception)
-            {
-                return true;
-                throw;
-            }
-
         }
-
-        public static bool Eliminar(int v)
-        {
-            try
-            {
-                Parcial2Db db = new Parcial2Db();
-                Empleados e = db.Empleados.Find(v);
-                {
-                    db.Empleados.Remove(e);
-                    db.SaveChanges();
-                    return false;
-                }
-            }
-            catch (Exception)
-            {
-                return true;
-                throw;
-            }
-
-
-        }
-
-        public static Empleados Buscar(int Id)
-        {
-            try
-            {
-                Parcial2Db db = new Parcial2Db();
-                {
-                    return db.Empleados.Find(Id);
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
     }
 }
